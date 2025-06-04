@@ -7,6 +7,7 @@ from elements.icon import Icon
 from elements.text import Text
 from elements.button import Button
 from elements.file_input import FileInput
+import allure
 
 
 class ImageUploadWidgetComponent(BaseComponent):
@@ -28,6 +29,7 @@ class ImageUploadWidgetComponent(BaseComponent):
         self.remove_button = Button(page, f'{identifier}-image-upload-widget-remove-button', "Remove Button")
         self.upload_input = FileInput(page, f'{identifier}-image-upload-widget-input', "Input")
 
+    @allure.step("Check image upload widget visible")
     def check_visible(self, is_image_uploaded: bool = False):
         self.image_upload_info_icon.check_visible()
 

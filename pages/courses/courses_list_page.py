@@ -8,6 +8,7 @@ from components.navigation.navbar_component import NavbarComponent
 from components.courses.courses_list_toolbar_view_component import CoursesListToolbarViewComponent
 
 
+
 class CoursesListPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
