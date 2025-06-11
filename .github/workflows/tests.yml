@@ -43,6 +43,7 @@ jobs:
       - name: Save Allure report as artifact
         uses: actions/upload-artifact@v4
         with:
+          name: allure-results
           path: allure-results
 
   publish-report:
@@ -53,6 +54,7 @@ jobs:
       - name: Download Allure report
         uses: actions/download-artifact@v4
         with:
+          name: allure-results
           path: allure-results
 
       # 5. Шаг для получения истории отчётов Allure, если она существует
