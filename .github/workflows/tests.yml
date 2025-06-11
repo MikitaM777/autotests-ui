@@ -40,6 +40,20 @@ jobs:
 
         #Запускаем тесты, отмеченные как "regression", генерируем результаты для Allure
 
+      - name: Save Allure report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          allure_results: allure-results
+
+    publish-report:
+      needs: run-tests
+      steps:
+
+      - name: Download Allure report
+        uses: actions/download-artifact@v4
+        with:
+          allure_results: allure-results
+
       # 5. Шаг для получения истории отчётов Allure, если она существует
       - name: Get Allure history
         uses: actions/checkout@v4  # Опять клонируем репозиторий, чтобы получить историю отчётов
@@ -57,6 +71,16 @@ jobs:
           allure_results: allure-results  # Указываем каталог с результатами тестов
           allure_history: allure-history  # Указываем каталог для истории отчётов Allure
 
+      - name: Save Allure report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          allure_results: allure-results
+
+
+  publish-report:
+    needs: run-tests
+    steps:
+      -
       # 7. Шаг для деплоя отчёта Allure на GitHub Pages, чтобы его можно было просматривать в браузере
       - name: Deploy report to Github Pages
         if: always()  # Выполняется всегда, независимо от успеха других шагов
