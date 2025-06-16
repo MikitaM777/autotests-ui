@@ -21,7 +21,7 @@ class Input(BaseElement):
         #  - сначала получаем общий селектор блока
         #  - затем уточняем путь до самого <input>, добавляя '//input'
         # Это нужно, чтобы трекер точно знал, с каким элементом шло взаимодействие.
-        return f'{super().get_raw_locator(**kwargs)}//input'
+        return f'{super().get_raw_locator(nth, **kwargs)}//input'
 
     def fill(self, value: str, nth: int = 0, **kwargs):
         step = f'Fill {self.type_of} "{self.name}" to value "{value}"'
